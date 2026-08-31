@@ -9,7 +9,11 @@ import { usersMock } from "@/constants/usersMock"
 import { useState } from "react"
 import { useNavigate } from "react-router"
 
-export const LoginCard = () => {
+type LoginCardProps = {
+  onLoginSuccess: (usuario: string) => void;
+};
+
+export const LoginCard = ({ onLoginSuccess }: LoginCardProps) => {
   const navigate = useNavigate();
 
   const [ authError, setAuthError ] = useState<string | null>(null);
@@ -35,7 +39,8 @@ export const LoginCard = () => {
       return;
     }
 
-    // Si pasa la validación, acá manejás el éxito (Redirección, etc.)
+    onLoginSuccess(JSON.stringify(usuario));
+
     console.log("Login exitoso", usuario);
     navigate("/home");
   }
@@ -49,7 +54,7 @@ export const LoginCard = () => {
         <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col">
           <FieldGroup className="flex flex-col">
 
-            <Controller 
+            <Controller
               name="nombreUsuario"
               control={control}
               render={({ field, fieldState }) => (
@@ -57,9 +62,9 @@ export const LoginCard = () => {
                   <FieldLabel className="text-slate-800 text-2xs">
                     Usuario
                   </FieldLabel>
-                  <Input 
+                  <Input
                     {...field}
-                    placeholder="Usuario" 
+                    placeholder="Usuario"
                     type="text"
                     aria-invalid={fieldState.invalid}
                     className="border-slate-300 text-muted-foreground"
@@ -73,7 +78,7 @@ export const LoginCard = () => {
               )}
             />
 
-            <Controller 
+            <Controller
               name="contraseña"
               control={control}
               render={({ field, fieldState }) => (
@@ -81,7 +86,7 @@ export const LoginCard = () => {
                   <FieldLabel className="text-slate-800 text-2xs">
                     Contraseña
                   </FieldLabel>
-                  <Input 
+                  <Input
                     {...field}
                     type="password"
                     aria-invalid={fieldState.invalid}
@@ -105,7 +110,7 @@ export const LoginCard = () => {
             <Button className="mt-5 mb-5" type="submit" title="Iniciar Sesión">
               Iniciar Sesión
             </Button>
-              
+
           </FieldGroup>
         </form>
       </CardContent>

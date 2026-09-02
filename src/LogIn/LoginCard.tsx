@@ -5,12 +5,12 @@ import { Card, CardHeader, CardContent } from "@/components/ui/card"
 import { useForm, Controller } from "react-hook-form"
 import { loginSchema, type LoginData } from "./LoginCardUtils"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { usersMock } from "@/constants/usersMock"
+import { usersMock, type User } from "@/constants/usersMock"
 import { useState } from "react"
 import { useNavigate } from "react-router"
 
 type LoginCardProps = {
-  onLoginSuccess: (usuario: string) => void;
+  onLoginSuccess: (usuario: User) => void;
 };
 
 export const LoginCard = ({ onLoginSuccess }: LoginCardProps) => {
@@ -39,7 +39,7 @@ export const LoginCard = ({ onLoginSuccess }: LoginCardProps) => {
       return;
     }
 
-    onLoginSuccess(JSON.stringify(usuario));
+    onLoginSuccess(usuario);
 
     console.log("Login exitoso", usuario);
     navigate("/home");

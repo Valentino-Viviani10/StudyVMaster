@@ -1,10 +1,10 @@
 import { type ReactNode } from "react";
 
-type LayoutProps = {
+type LoginLayoutProps = {
   readonly children: ReactNode;
 };
 
-export default function Layout({children}: LayoutProps) {
+export default function LoginLayout({children}: LoginLayoutProps) {
   return (
     <main className="flex flex-col justify-center items-center h-screen">
       {children}

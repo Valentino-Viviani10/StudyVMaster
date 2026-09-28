@@ -8,6 +8,7 @@ import { HomePage } from "./HomePage/HomePage";
 import { useState } from "react";
 import type { User } from "./constants/usersMock";
 import { AppLayout } from "./components/AppLayout";
+import { StudyRoom } from "./StudyRoom/StudyRoom";
 
 function App() {
   const queryClient = new QueryClient()
@@ -18,7 +19,7 @@ function App() {
     const usuarioString = JSON.stringify(usuario);
 
     localStorage.setItem("usuario", usuarioString);
-    setUser(usuarioString); // Al cambiar el estado, React re-renderiza con el nuevo valor
+    setUser(usuarioString);
   };
 
   return (
@@ -39,6 +40,8 @@ function App() {
           >
 
             <Route path="/home" element={<HomePage />} />
+
+            <Route path="/study-room" element={<StudyRoom />} />
 
           </Route>
         </Routes>

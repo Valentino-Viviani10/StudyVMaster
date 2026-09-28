@@ -1,28 +1,42 @@
 // src/components/Navbar.tsx
 
 import { NavigationMenu, NavigationMenuItem, NavigationMenuLink, NavigationMenuList} from "@/components/ui/navigation-menu"
-import { Link } from "react-router"
+import { cn } from "@/lib/utils"
+import { Link, useLocation } from "react-router"
+
+const NAV_ITEMS = [
+  { to: "/home", label: "Home" },
+  { to: "/study-room", label: "StudyRoom" },
+  { to: "/materias", label: "Materias" },
+  { to: "/perfil", label: "Perfil" },
+  { to: "/configuracion", label: "Configuración" }
+]
 
 export const Navbar = () => {
+  const { pathname } = useLocation();
+
   return (
-    <NavigationMenu className="flex items-center justify-between w-full max-w-none bg-blue-500 text-white p-2">
-      <NavigationMenuList>
-        <NavigationMenuItem className="hover:text-black">
-          <NavigationMenuLink render={<Link to="/home" />}>Home</NavigationMenuLink>
-        </NavigationMenuItem>
-        <NavigationMenuItem className="hover:text-black">
-          <NavigationMenuLink render={<Link to="/study-room" />}>StudyRoom</NavigationMenuLink>
-        </NavigationMenuItem>
-        <NavigationMenuItem className="hover:text-black">
-          <NavigationMenuLink render={<Link to="/materias" />}>Materias</NavigationMenuLink>
-        </NavigationMenuItem>
-        <NavigationMenuItem className="hover:text-black">
-          <NavigationMenuLink render={<Link to="/perfil" />}>Perfil</NavigationMenuLink>
-        </NavigationMenuItem>
-        <NavigationMenuItem className="hover:text-black">
-          <NavigationMenuLink render={<Link to="/configuracion" />}>Configuración</NavigationMenuLink>
-        </NavigationMenuItem>
+    <NavigationMenu className="w-full h-14 max-w-none bg-navbar text-navbar-foreground px-2">
+      <NavigationMenuList className="flex items-stretch justify-center gap-5 w-full h-full">
+        {NAV_ITEMS.map(({ to, label }) => {
+          const isActive = pathname.startsWith(to);
+
+          return (
+            <NavigationMenuItem key={to}>
+              <NavigationMenuLink
+                render={<Link to={to} />}
+                className={cn(
+                  "flex h-full items-center rounded-none px-4 text-navbar-foreground",
+                  "hover:bg-navbar-active hover:text-navbar-foreground focus:bg-navbar-active focus:text-navbar-foreground transition-colors duration-250",
+                  isActive && "border-b-2 border-border bg-navbar-active"
+                )}
+              >
+                {label}
+              </NavigationMenuLink>
+            </NavigationMenuItem>
+          );
+        })}
       </NavigationMenuList>
     </NavigationMenu>
-  )
-}
+  );
+};

@@ -102,7 +102,7 @@ export const LoginCard = ({ onLoginSuccess }: LoginCardProps) => {
             />
 
             {authError && (
-              <p className="text-sm p-2.5 rounded-lg font-normal text-destructive text-center w-full">
+              <p className="text-xs p-2.5 rounded-lg font-normal text-destructive text-center w-full">
                 {authError}
               </p>
             )}

@@ -46,7 +46,7 @@ export const LoginCard = ({ onLoginSuccess }: LoginCardProps) => {
   }
 
   return (
-    <Card className="flex flex-col bg-blue-50 justify-center w-90 m-auto border-2 p-6">
+    <Card className="flex flex-col bg-blue-50 justify-center w-90 m-auto border-2 border-primary/60 p-6">
       <CardHeader className="text-center text-2xl font-bold">
         Iniciar Sesión
       </CardHeader>

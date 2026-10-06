@@ -16,17 +16,17 @@ export const Navbar = () => {
   const { pathname } = useLocation();
 
   return (
-    <NavigationMenu className="w-full h-14 max-w-none bg-navbar text-navbar-foreground px-2">
-      <NavigationMenuList className="flex items-stretch justify-center gap-5 w-full h-full">
+    <NavigationMenu className="h-14 max-h-14 items-stretch max-w-none bg-navbar text-navbar-foreground">
+      <NavigationMenuList className="flex items-stretch justify-center">
         {NAV_ITEMS.map(({ to, label }) => {
           const isActive = pathname.startsWith(to);
 
           return (
-            <NavigationMenuItem key={to}>
+            <NavigationMenuItem className="flex" key={to}>
               <NavigationMenuLink
                 render={<Link to={to} />}
                 className={cn(
-                  "flex h-full items-center rounded-none px-4 text-navbar-foreground",
+                  "flex items-center w-30 justify-center rounded-none px-4 text-navbar-foreground",
                   "hover:bg-navbar-active hover:text-navbar-foreground focus:bg-navbar-active focus:text-navbar-foreground transition-colors duration-250",
                   isActive && "border-b-2 border-border bg-navbar-active"
                 )}
